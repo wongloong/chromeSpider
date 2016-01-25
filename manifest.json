@@ -1,0 +1,34 @@
+{
+  "name": "siteSpider",
+  "manifest_version": 2,
+  "version": "0.0.2",
+  "description": "相对单线程稳定版",
+  "browser_action": {
+    "default_icon": "spider.png",
+    "default_title": "spider",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "webNavigation",
+    "webRequestBlocking",
+    "proxy",
+    "*://*/*",
+    "tabs",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "background": { "scripts": ["js/jquery-1.11.2.min.js", "js/bk.js"] },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "js/jquery-1.11.2.min.js",
+        "js/content.js"
+      ]
+    }
+  ]
+}

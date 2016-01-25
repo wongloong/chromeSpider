@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+<div>
+    <!-- <div>
+        sku编码：<input type="text" id="sku"/>
+    </div> -->
+    <div>
+        抓取规则:<select id="rule">
+       <option value="tb">淘宝</option>
+    </select>
+    </div>
+    <div>
+        抓取页数:<input type="text" id="fetchNum" value="1"/>
+    </div>
+    <button id="startFetch">抓取</button>
+    <button id="hasLoginOk">已登录</button>
+</div>
+<div>
+使用说明：
+1.在淘宝搜索好关键词（可选择排序或其他淘宝功能）后，点击抓取。
+2.如果出现登录验证，请登录后点击已登录，然后刷新当前网页。
+3.插件正常运行中， 禁止使用该浏览器浏览其他网页。
+</div>
+<!-- <div id="html">
+    抓取总数：<span id="fetchTotals"></span>
+</div>
+-->
+</body> 
+</html>

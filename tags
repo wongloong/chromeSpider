@@ -1,0 +1,30 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+baseUrl	js/popup.js	/^	var baseUrl = $("#baseUrl").val();$/;"	v
+evaluateExpression	js/content.js	/^var evaluateExpression = "#J_RateCounter||.tm-ind-reviewCount span.tm-count";$/;"	v
+fetchDetail	js/bk.js	/^var fetchDetail = false;$/;"	v
+fetchTotal	js/bk.js	/^var fetchTotal;\/\/抓取总数$/;"	v
+flag	js/bk.js	/^var flag = false;$/;"	v
+getDetailElement	js/content.js	/^function getDetailElement(request, sendResponse) {$/;"	f
+getElementAttr	js/content.js	/^function getElementAttr(expression, attr) {$/;"	f
+getElementText	js/content.js	/^function getElementText(expression) {$/;"	f
+getTbSearch	js/content.js	/^function getTbSearch(request, sendResponse) {$/;"	f
+getUrl	js/content.js	/^function getUrl(array, urls) {$/;"	f	function:sleep
+mainFetchUrl	js/bk.js	/^var mainFetchUrl;\/\/抓取入口$/;"	v
+mainTitleExpression	js/content.js	/^var mainTitleExpression = "h3.tb-main-title||h1:last";$/;"	v
+nameExpression	js/content.js	/^var nameExpression = "div.tb-shop-name||a.slogo-shopname";$/;"	v
+num	js/bk.js	/^var num = 100;$/;"	v
+num	js/popup.js	/^	var num = $("#fetchNum").val();$/;"	v
+priceExpression	js/content.js	/^var priceExpression = ".tb-rmb-num:last||#J_PromoPrice span";$/;"	v
+sellerNameExpression	js/content.js	/^var sellerNameExpression = ".tb-seller-name";$/;"	v
+sendMsg	js/bk.js	/^function sendMsg(tabId, num) {$/;"	f
+sendMsg	js/content.js	/^function sendMsg(urls, cmd) {　　chrome.extension.sendMessage({$/;"	f
+sendMsg2Detail	js/bk.js	/^function sendMsg2Detail() {$/;"	f
+sendMsg2Detail	js/content.js	/^function sendMsg2Detail(cmd, url, sellCount) {　　chrome.extension.sendMessage({$/;"	f
+shopUrlExpression	js/content.js	/^var shopUrlExpression = ".tb-shop-name a||slogo-shopname a";$/;"	v
+sku	js/bk.js	/^var sku; \/\/sku编码$/;"	v
+sku	js/popup.js	/^	var sku = $("#sku").val();$/;"	v
