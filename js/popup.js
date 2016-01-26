@@ -1,7 +1,15 @@
 $(function() {
 	$("#startFetch").bind("click", startFetch);
     $("#hasLoginOk").bind("click",hasLoginOk);
+    // $("#hasReset").bind("click",hasReset);
 })
+/* function hasReset(){
+	chrome.runtime.sendMessage({
+		type: "resetIsOk"
+	},
+    function(response) {
+    });
+} */
 function hasLoginOk() {
 	chrome.runtime.sendMessage({
 		type: "mustLoginIsOk"

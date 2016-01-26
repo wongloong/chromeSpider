@@ -1,8 +1,8 @@
 {
   "name": "siteSpider",
   "manifest_version": 2,
-  "version": "0.0.2",
-  "description": "相对单线程稳定版",
+  "version": "0.0.3",
+  "description": "增加保存数据到本地，重启后继续访问的功能",
   "browser_action": {
     "default_icon": "spider.png",
     "default_title": "spider",

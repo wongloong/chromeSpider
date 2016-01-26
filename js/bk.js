@@ -15,15 +15,17 @@ chrome.extension.onMessage.addListener(function(request, _, response) {
 			var continueFlag = window.confirm("找到上次未处理完成的url,是否继续处理上次url?");
 			if (continueFlag) {
 				array = obj['storageUrls'];
-				alert(array.length);
+                chrome.storage.local.remove("storageUrls",function(){});
 				chrome.storage.local.get('fetchTotalSave', function(obj) {
-					fetchTotal = obj['fetchTotalSave'];
-					alert("存储抓取总数" + fetchTotal);
-					//清除缓存 
-					chrome.storage.local.clear();
+                    if(obj['fetchTotalSave']){
+					    fetchTotal = obj['fetchTotalSave'];
+					    //清除缓存 
+					    chrome.storage.local.remove("fetchTotalSave",function(){});
+                    }
 				})
-			chrome.storage.local.clear();
 				sendMsg2Detail();
+			} else {
+				chrome.storage.local.clear();
 			}
 		}
 	})
@@ -47,9 +49,28 @@ chrome.extension.onMessage.addListener(function(request, _, response) {
 			})
 		}
 	}
+    /* if(request.type=="resetIsOk"){
+        if(array.length>0){
+            chrome.tabs.create({url:"http://www.baidu.com",active:true},function(tab){
+                chrome.tabs.sendMessage(tab.id,{type:"refl"});
+            })
+        }
+    }  */
+    //已登录
 	if (request.type == "mustLoginIsOk") {
 		mustLogin = false;
+			chrome.tabs.query({
+				active: true,
+				currentWindow: true
+			},
+			function(tabs) {
+				chrome.tabs.sendMessage(tabs[0].id, {
+					type: "refl"
+				},
+				function(response) {});
+			})
 	}
+    //分页抓取返回判断是否是最后一页
 	var cmd = request.cmd;
 	if (cmd == "next") {
 		flag = true;
@@ -77,6 +98,7 @@ chrome.extension.onMessage.addListener(function(request, _, response) {
 		}
 	}
 	var detailCMD = request.detailCMD;
+    //未抓取到销售总数数据
 	if (detailCMD == false) {
 		if (request.url) {
 			if (request.url != "abc") {
@@ -106,7 +128,6 @@ chrome.extension.onMessage.addListener(function(request, _, response) {
 					var reset = window.confirm("等前屏蔽次数大于2次，是否重启？");
 					if (reset) {
 						chrome.storage.local.clear();
-						alert("存储" + fetchTotal);
 						chrome.storage.local.set({
 							"storageUrls": array,
 							"fetchTotalSave": fetchTotal
@@ -122,8 +143,11 @@ chrome.extension.onMessage.addListener(function(request, _, response) {
 			}
 		}
 	}
+    //存储抓取数量
 	if (request.sellCount && request.sellCount != "-") {
-		fetchTotal = Number(fetchTotal) + Number(request.sellCount);
+		if (Number(request.sellCount)) {
+			fetchTotal = Number(fetchTotal) + Number(request.sellCount);
+		}
 	}
 });
 //分页发送数据，解析url
@@ -151,7 +175,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 function sendMsg2Detail() {
 	if (!mustLogin) {
 		if (array.length > 0) {
-			// sleep();
+			sleep();
 			var currentUrl = array.shift();
 			chrome.tabs.query({
 				active: true,

@@ -12,6 +12,8 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 		if (request.rule == "tb") {
 			getLastDetailElement(request, sendResponse);
 		}
+	} else if (request.type == 'refl') {
+		window.location.href = window.location.href;
 	}
 })
 
@@ -31,30 +33,31 @@ function getDetailElement(request, sendResponse) {
 	var title = getElementText(mainTitleExpression);
 	var evaluate = getElementText(evaluateExpression);
 	var seller = getElementText(sellerNameExpression);
+
 	// var shopUrl = getElementAttr();
 	var detailCMD = request.last;
 	if (!sellCount || sellCount == "-") {
 		detailCMD = false;
-        /* if (!request.last) {
+		/* if (!request.last) {
             url = request.url;
         } else {
             url = window.location.href;
         }  */
 		url = window.location.href;
-		if (url.indexOf("item.taobao.com") < 0) {
+		if (url.indexOf("item.taobao.com") < 0||url.indexOf("login.")!=-1) {
 			detailCMD = true;
 		}
 	}
 	if (!request.last) {
 		window.location.href = request.url;
 	}
-    if (sellCount == "-" && evaluate != "-") {
-        sendMsg2Detail("mustLogin", url, "");
-        alert("请登录验证");
-    } else {
-        sendMsg2Detail(detailCMD, url, sellCount);
-    } 
-    sendMsg2Detail(detailCMD, url, sellCount);
+	if (sellCount == "-" && evaluate != "-") {
+		sendMsg2Detail("mustLogin", url, "");
+		alert("请登录验证");
+	} else {
+		sendMsg2Detail(detailCMD, url, sellCount);
+	}
+	//sendMsg2Detail(detailCMD, url, sellCount);
 }
 function getLastDetailElement(request, response) {
 	var sellCount = getElementText(countExpressions);
